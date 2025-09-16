@@ -1,5 +1,5 @@
-# EARLY-DETECTION-OF-CARDIOVASCULAR-DISEASES
-## Problem Statement
+# 🫀EARLY-DETECTION-OF-CARDIOVASCULAR-DISEASES
+## 🧩Problem Statement
 Cardiovascular diseases (CVD) are a leading cause of morbidity and mortality worldwide. Early risk identification can enable timely lifestyle changes, diagnostic testing, and treatment—improving outcomes and reducing costs. Yet, clinicians are often faced with limited time and incomplete information at the point of care.
 
 <p align="center">
@@ -12,7 +12,7 @@ Two core questions drive this project: <br>
 
 In modern care settings, data science teams build predictive models that estimate CVD risk from routinely available data (demographics, vitals, symptoms, ECG/labs, comorbidities). When done well, these models help prioritize attention, standardize triage, and save clinical time—while always keeping clinicians in the loop.
 
-## Goal of this Project
+## 🎯Goal of this Project
 
 We operationalize real-time risk screening for three targets:
 - Coronary Artery Disease (CAD)
@@ -21,7 +21,7 @@ We operationalize real-time risk screening for three targets:
 
 Patients’ basic details are captured (e.g., through an online form or EHR integration), features are preprocessed, and task-specific ML models generate a risk label (and optionally a probability). The system is designed to automate initial eligibility/risk checks so care teams can focus on the highest-risk patients and allocate diagnostic resources efficiently.
 
-## Hypothesis Generation
+## 🧠Hypothesis Generation
 
 Below are example factors hypothesized to affect CVD risk (dependent variables vary by task):
 - Demographics: Age, sex.
@@ -36,7 +36,7 @@ Below are example factors hypothesized to affect CVD risk (dependent variables v
   
 Intuition (non-exhaustive): higher age/BMI/BP, smoking, diabetes, abnormal ECG findings, and adverse lipid profiles may increase CAD/MI risk; sustained high BP and elevated heart rate may associate with hypertension; reduced EF and abnormal clinical/lab markers may signal MI complications.
 
-## Data Source
+## 💾Data Source
 
 This project uses task-specific CSV datasets (typical filenames):
 > - Coronary Artery Disease.csv (CAD classification) <br>
@@ -47,8 +47,8 @@ Each train file contains features plus a binary target; each test file contains 
 
 Replace/augment these with your institution’s data as permitted. Ensure appropriate governance for any protected health information.
 
-## Exploratory Data Analysis (EDA)
-### 1) Univariate Analysis
+## 🔎Exploratory Data Analysis (EDA)
+### 1) Univariate Analysis📊
 
 We inspect each variable independently:
 - **Categorical features:** frequency tables/bar charts for sex, smoking status, diabetes, typical chest pain, ECG flags, etc.
@@ -59,7 +59,7 @@ Typical (illustrative) observations: more older patients in higher-risk groups; 
   <img src="Images/Boxplots.png" alt="Boxplots" width="450"/>
 </p>
 
-### 2) Bivariate Analysis
+### 2) Bivariate Analysis🔀
 
 We analyze each predictor vs. the target:
 - **CAD:** higher probability with typical chest pain, ST-depression/T-inversion, dyslipidemia, diabetes, reduced exercise tolerance.
@@ -72,7 +72,7 @@ Bar plots and conditional distributions help surface such patterns.
   <img src="Images/Pairplot.png" alt="Pairplot" width="400"/>
 </p>
 
-### 3) Correlation Plot
+### 3) Correlation Plot🕸️
 
 A heatmap of numerical features reveals multicollinearity:
 - SBP↔DBP and their derivatives (mean arterial pressure, pulse pressure)
@@ -86,7 +86,7 @@ Understanding these relationships guides feature engineering and model choice (e
   <img src="Images/Correlation Heatmap.png" alt="Boxplots" width="400"/>
 </p>
 
-## Model Building
+## 🛠️Model Building
 
 We use Stratified cross-validation (e.g., StratifiedShuffleSplit/StratifiedKFold) and compare multiple algorithms:
 
@@ -97,17 +97,17 @@ We use Stratified cross-validation (e.g., StratifiedShuffleSplit/StratifiedKFold
 
 Hyperparameters are tuned via grid/random search. Class imbalance is handled with class weights or SMOTE (evaluated carefully to avoid leakage).
 
-## Model Comparison
+## 🏆Model Comparison
 
 Across tasks, different families may dominate:
 
-> - CAD: tree-based ensembles often capture nonlinear interactions among ECG/lab flags.
-> - Hypertension: linear/SVM baselines can perform strongly with a compact feature set.
-> - MI complications: gradient boosting frequently excels on wide, mixed-type clinical schemas.
+> - CAD: tree-based ensembles often capture nonlinear interactions among ECG/lab flags.🌲
+> - Hypertension: linear/SVM baselines can perform strongly with a compact feature set.⚡
+> - MI complications: gradient boosting frequently excels on wide, mixed-type clinical schemas.🚀
 
 Final selections are based on cross-validated discrimination (AUROC), calibration, and recall at clinically acceptable false-positive rates. Document the chosen model per task and version each artifact (model + scaler).
 
-## Actions Taken
+## ✅Actions Taken
 
 - Explored and profiled datasets to understand distributions and missingness.
 - Ran statistical tests/visual analyses to surface relationships useful for prediction.
@@ -116,7 +116,7 @@ Final selections are based on cross-validated discrimination (AUROC), calibratio
 - Assessed discrimination, calibration, and class-imbalance impacts.
 - Produced production-ready artifacts and input validation schemas.
 
-## Future Improvements
+## 🔮Future Improvements
 
 - More data & external validation: broaden populations and care settings; evaluate generalization.
 - Imbalance strategies: threshold tuning by use-case, cost-sensitive learning, focal losses.
@@ -127,7 +127,7 @@ Final selections are based on cross-validated discrimination (AUROC), calibratio
 - MLOps: data/feature drift monitoring, automated re-training with governance.
 - Integration: EHR/API hooks for real-time risk scoring and clinician workflow prompts.
 
-## Disclaimer
+## ⚠️Disclaimer
 
 This project is for research and educational use only. It is not a medical device and must not be used for diagnosis or treatment without appropriate regulatory clearance and clinical oversight. Always involve qualified clinicians in interpretation and decision-making.
 
